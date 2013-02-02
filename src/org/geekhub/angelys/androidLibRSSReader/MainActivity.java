@@ -1,4 +1,4 @@
-package org.geekhub.angelys.AndroidLibRSSReader;
+package org.geekhub.angelys.androidLibRSSReader;
 
 import android.app.Activity;
 import android.os.Bundle;

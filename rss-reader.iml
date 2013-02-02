@@ -42,6 +42,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="android-support-v4" level="project" />
     <orderEntry type="module" module-name="Library" />
+    <orderEntry type="library" name="sparta" level="project" />
   </component>
 </module>
 
