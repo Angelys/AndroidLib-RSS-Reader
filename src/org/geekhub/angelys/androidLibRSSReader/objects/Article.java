@@ -1,7 +1,11 @@
 package org.geekhub.angelys.androidLibRSSReader.objects;
 
+import android.os.Parcelable;
+import android.os.Parcel;
 import org.horrabin.horrorss.RssItemBean;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,7 +15,7 @@ import java.util.Date;
  * Time: 6:10 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Article {
+public class Article implements Serializable {
 
     private String title;
 

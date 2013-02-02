@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">rss-reader</string>
+    <string name="app_name">AndroidLib RSS Reader</string>
+    <string name="contentDescription" >Article</string>
+    <string name="empty">No Data</string>
 </resources>

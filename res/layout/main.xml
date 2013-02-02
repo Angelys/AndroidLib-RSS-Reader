@@ -4,10 +4,9 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MainActivity"
-            />
+    <fragment android:id="@+id/list_fragment"
+              android:layout_height="match_parent"
+              android:layout_width="match_parent"
+              class="org.geekhub.angelys.androidLibRSSReader.fragments.ListFragment" />
 </LinearLayout>
 

@@ -11,4 +11,6 @@ public class Constants {
 
     public static String feed_link = "http://feeds.feedburner.com/AndrolibUS?format=xml";
 
+    public static String date_format = "EEE, MMM d, HH:mm";
+
 }

@@ -31,6 +31,7 @@ public class RSS {
 
     public RSS(String url){
         this.url = url;
+        this.parser = new RssParser();
     }
 
     public void load()
@@ -41,7 +42,7 @@ public class RSS {
             //If we couldn't get feed set empty rss
             feed = new RssFeed();
             feed.setItems(new ArrayList<RssItemBean>());
-            Log.e(Tag, e.getMessage());
+            Log.e(Tag, e.toString());
         }
     }
 
