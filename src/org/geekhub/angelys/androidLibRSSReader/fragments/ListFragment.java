@@ -1,7 +1,9 @@
 package org.geekhub.angelys.androidLibRSSReader.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import org.geekhub.angelys.androidLibRSSReader.objects.ArticleCollection;
 import org.geekhub.angelys.androidLibRSSReader.utils.Constants;
 import org.geekhub.angelys.androidLibRSSReader.utils.RSS;
@@ -20,6 +22,8 @@ public class ListFragment extends BaseListFragment {
         if(this.data == null)
         {
             getData();
+        } else {
+            updateUI();
         }
 
         super.onViewCreated(view, bundle);

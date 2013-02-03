@@ -42,7 +42,15 @@ public class BaseListFragment extends ListFragment {
     {
         super.onCreateView(inflater,container, savedInstanceState );
 
+        if(savedInstanceState != null && !savedInstanceState.isEmpty()){
+            data = (ArticleCollection)savedInstanceState.getSerializable("collection");
+        }
+
         return inflater.inflate(R.layout.list, container, false);
+    }
+
+    public void onSaveInstanceState(Bundle out){
+        out.putSerializable("collection", data);
     }
 
     public void onViewCreated(View view, Bundle bundle)

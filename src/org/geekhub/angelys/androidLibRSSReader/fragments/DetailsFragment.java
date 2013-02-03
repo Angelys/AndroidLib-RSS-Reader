@@ -39,11 +39,9 @@ public class DetailsFragment extends Fragment {
     {
         super.onCreateView(inflater,container, savedInstanceState );
 
-        if(savedInstanceState != null)
+        if(savedInstanceState != null && !savedInstanceState.isEmpty())
         {
-            this.article = new Article();
-            article.setTitle((String) savedInstanceState.get("title"));
-            article.setDescription((String) savedInstanceState.get("description"));
+            this.article = (Article)savedInstanceState.getSerializable("article");
         }
 
         return inflater.inflate(R.layout.details, container, false);
@@ -75,6 +73,11 @@ public class DetailsFragment extends Fragment {
     {
         super.onDestroy();
         Instance = null;
+    }
+
+    public void onSaveInstanceState(Bundle out)
+    {
+        out.putSerializable("article", article);
     }
 
 }

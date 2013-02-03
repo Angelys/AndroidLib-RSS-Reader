@@ -2,6 +2,7 @@ package org.geekhub.angelys.androidLibRSSReader.objects;
 
 import org.horrabin.horrorss.RssItemBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * Time: 6:36 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ArticleCollection extends ArrayList<Article> {
+public class ArticleCollection extends ArrayList<Article> implements Serializable {
 
     public ArticleCollection(){}
 
