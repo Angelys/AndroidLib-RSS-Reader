@@ -20,6 +20,11 @@ public class DetailsActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        if(getResources().getBoolean(R.bool.is_tablet) && getResources().getBoolean(R.bool.in_landscape))
+        {
+            finish();
+        }
+
         if(getIntent() != null)
         {
             article = (Article)getIntent().getSerializableExtra("article");

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import org.geekhub.angelys.androidLibRSSReader.activities.DetailsActivity;
 import org.geekhub.angelys.androidLibRSSReader.fragments.BaseListFragment.onListElementSelectedListener;
 import org.geekhub.angelys.R;
+import org.geekhub.angelys.androidLibRSSReader.fragments.DetailsFragment;
 import org.geekhub.angelys.androidLibRSSReader.objects.Article;
 
 public class MainActivity extends FragmentActivity implements onListElementSelectedListener {
@@ -19,8 +20,15 @@ public class MainActivity extends FragmentActivity implements onListElementSelec
     }
 
     public void onItemSelected(Article article){
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("article", article);
-        startActivity(intent);
+
+        if(DetailsFragment.Instance != null)
+        {
+            DetailsFragment.Instance.setData(article);
+        } else
+        {
+            Intent intent = new Intent(this, DetailsActivity.class);
+            intent.putExtra("article", article);
+            startActivity(intent);
+        }
     }
 }

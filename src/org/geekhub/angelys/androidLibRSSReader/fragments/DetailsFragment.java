@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
+import com.actionbarsherlock.app.SherlockFragment;
 import org.geekhub.angelys.R;
 import org.geekhub.angelys.androidLibRSSReader.objects.Article;
 
@@ -17,21 +18,21 @@ import org.geekhub.angelys.androidLibRSSReader.objects.Article;
  * Time: 9:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends SherlockFragment {
 
     public static DetailsFragment Instance;
 
-    private Article article;
+    public static Article article;
 
     public DetailsFragment(){}
 
     public DetailsFragment(Article article){
-        this.article = article;
+        DetailsFragment.article = article;
     }
 
     public void setData(Article article)
     {
-        this.article = article;
+        DetailsFragment.article = article;
         setView();
     }
 
@@ -41,7 +42,7 @@ public class DetailsFragment extends Fragment {
 
         if(savedInstanceState != null && !savedInstanceState.isEmpty())
         {
-            this.article = (Article)savedInstanceState.getSerializable("article");
+            DetailsFragment.article = (Article)savedInstanceState.getSerializable("article");
         }
 
         return inflater.inflate(R.layout.details, container, false);
