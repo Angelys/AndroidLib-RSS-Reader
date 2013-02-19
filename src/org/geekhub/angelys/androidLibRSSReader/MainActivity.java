@@ -3,13 +3,14 @@ package org.geekhub.angelys.androidLibRSSReader;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import org.geekhub.angelys.androidLibRSSReader.activities.DetailsActivity;
 import org.geekhub.angelys.androidLibRSSReader.fragments.BaseListFragment.onListElementSelectedListener;
 import org.geekhub.angelys.R;
 import org.geekhub.angelys.androidLibRSSReader.fragments.DetailsFragment;
 import org.geekhub.angelys.androidLibRSSReader.objects.Article;
 
-public class MainActivity extends FragmentActivity implements onListElementSelectedListener {
+public class MainActivity extends SherlockFragmentActivity implements onListElementSelectedListener {
     /**
      * Called when the activity is first created.
      */

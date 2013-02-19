@@ -1,7 +1,17 @@
 package org.geekhub.angelys.androidLibRSSReader.db.tables;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import org.geekhub.angelys.androidLibRSSReader.db.FeedsDatabaseHelper;
+import org.geekhub.angelys.androidLibRSSReader.objects.Article;
+import org.geekhub.angelys.androidLibRSSReader.objects.ArticleCollection;
+import org.geekhub.angelys.androidLibRSSReader.utils.Constants;
+import org.geekhub.angelys.androidLibRSSReader.utils.RSS;
+
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,5 +52,44 @@ public abstract class ArticlesTable {
                 + ", which will destroy all old data");
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES);
         onCreate(database);
+    }
+
+    public static void updateList(Context context)
+    {
+        SQLiteDatabase database = new FeedsDatabaseHelper(context).getWritableDatabase();
+
+        RSS rss = new RSS(Constants.feed_link);
+
+        ArticleCollection collection = new ArticleCollection(rss.getItems());
+
+        for (Article article : collection) {
+
+            ContentValues cv = new ContentValues();
+
+            cv.put(COLUMN_TITLE, article.getTitle());
+            cv.put(COLUMN_PUBLISHED_AT, article.getPublished_at().toString());
+            cv.put(COLUMN_DESCRIPTION, article.getDescription());
+            cv.put(COLUMN_LINK, article.getLink());
+
+            database.insert(TABLE_ARTICLES, null, cv);
+        }
+
+    }
+
+    public static Article findOneById(Context context, String where, String[] args)
+    {
+        SQLiteDatabase database = new FeedsDatabaseHelper(context).getWritableDatabase();
+
+        Cursor cursor = database.query(TABLE_ARTICLES, new String[]{COLUMN_ID ,COLUMN_TITLE, COLUMN_DESCRIPTION, COLUMN_PUBLISHED_AT, COLUMN_LINK}, where, args, null, null, null);
+
+        Article article = new Article();
+        article.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+        article.setPublished_at(new Date(cursor.getString(cursor.getColumnIndex(COLUMN_PUBLISHED_AT))));
+        article.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)));
+        article.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+        article.setLink(cursor.getString(cursor.getColumnIndex(COLUMN_LINK)));
+
+        return article;
+
     }
 }

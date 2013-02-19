@@ -1,10 +1,14 @@
 package org.geekhub.angelys.androidLibRSSReader.objects;
 
+import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
+import org.geekhub.angelys.androidLibRSSReader.db.tables.ArticlesTable;
 import org.horrabin.horrorss.RssItemBean;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,6 +21,8 @@ import java.util.Date;
  */
 public class Article implements Serializable {
 
+    private int Id;
+
     private String title;
 
     private Date published_at;
@@ -27,12 +33,34 @@ public class Article implements Serializable {
 
     public Article(){}
 
+    public Article(Cursor cursor)
+    {
+        Id = cursor.getInt(cursor.getColumnIndex(ArticlesTable.COLUMN_ID));
+        title = cursor.getString(cursor.getColumnIndex(ArticlesTable.COLUMN_TITLE));
+
+        try{
+            published_at = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy").parse(cursor.getString(cursor.getColumnIndex(ArticlesTable.COLUMN_PUBLISHED_AT)));
+        }catch (ParseException e) {
+            published_at = new Date();
+        }
+        description = cursor.getString(cursor.getColumnIndex(ArticlesTable.COLUMN_DESCRIPTION));
+        link = cursor.getString(cursor.getColumnIndex(ArticlesTable.COLUMN_LINK));
+    }
+
     public Article(RssItemBean item){
 
         this.title = item.getTitle();
         this.published_at = item.getPubDate();
         this.description = item.getDescription();
         this.link = item.getLink();
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 
     public String getTitle() {

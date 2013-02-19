@@ -2,6 +2,7 @@ package org.geekhub.angelys.androidLibRSSReader.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import org.geekhub.angelys.R;
 import org.geekhub.angelys.androidLibRSSReader.fragments.DetailsFragment;
 import org.geekhub.angelys.androidLibRSSReader.objects.Article;
@@ -13,7 +14,7 @@ import org.geekhub.angelys.androidLibRSSReader.objects.Article;
  * Time: 8:39 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DetailsActivity extends FragmentActivity {
+public class DetailsActivity extends SherlockFragmentActivity {
 
     private Article article;
 
