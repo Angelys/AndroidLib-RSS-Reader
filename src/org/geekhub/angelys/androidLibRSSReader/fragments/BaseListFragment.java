@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import com.actionbarsherlock.app.SherlockListFragment;
 import org.geekhub.angelys.R;
 import org.geekhub.angelys.androidLibRSSReader.db.tables.ArticlesTable;
 import org.geekhub.angelys.androidLibRSSReader.objects.ArticleCollection;
@@ -23,7 +24,7 @@ import org.geekhub.angelys.androidLibRSSReader.utils.ListAdapter;
  * Time: 7:06 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BaseListFragment extends ListFragment {
+public class BaseListFragment extends SherlockListFragment {
 
 
     public BaseListFragment(){}
@@ -38,6 +39,8 @@ public class BaseListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        setHasOptionsMenu(true);
+
         super.onCreateView(inflater,container, savedInstanceState );
 
         return inflater.inflate(R.layout.list, container, false);

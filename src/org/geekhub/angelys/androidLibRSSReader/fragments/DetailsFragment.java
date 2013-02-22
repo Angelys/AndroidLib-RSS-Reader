@@ -1,5 +1,6 @@
 package org.geekhub.angelys.androidLibRSSReader.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,9 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import org.geekhub.angelys.R;
 import org.geekhub.angelys.androidLibRSSReader.objects.Article;
 
@@ -21,6 +25,8 @@ import org.geekhub.angelys.androidLibRSSReader.objects.Article;
 public class DetailsFragment extends SherlockFragment {
 
     public static DetailsFragment Instance;
+
+    public Menu menu;
 
     public static Article article;
 
@@ -55,6 +61,38 @@ public class DetailsFragment extends SherlockFragment {
         Instance = this;
     }
 
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        inflater.inflate(R.menu.details, menu);
+    }
+
+    public void onPrepareOptionsMenu(Menu menu)
+    {
+        this.menu = menu;
+        setLikeButton();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.like_dislike :
+            {
+                triggerArticle();
+                break;
+            }
+
+            case R.id.share :
+            {
+                share();
+                break;
+            }
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void setView()
     {
         if(article != null && getView() != null)
@@ -79,6 +117,38 @@ public class DetailsFragment extends SherlockFragment {
     public void onSaveInstanceState(Bundle out)
     {
         out.putSerializable("article", article);
+    }
+
+    public void triggerArticle()
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                article.setLike(!article.getLike());
+                article.save(getActivity());
+                setLikeButton();
+            }
+        }).start();
+    }
+
+    public void setLikeButton()
+    {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                menu.findItem(R.id.like_dislike).setTitle(article.getLike() ? R.string.dislike : R.string.like);
+            }
+        });
+    }
+
+    public void share()
+    {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TITLE, article.getTitle());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, article.getLink());
+        sendIntent.setType("text/plain");
+        getActivity().startActivity(sendIntent);
     }
 
 }

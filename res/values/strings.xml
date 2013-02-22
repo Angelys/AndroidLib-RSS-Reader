@@ -3,4 +3,9 @@
     <string name="app_name">AndroidLib RSS Reader</string>
     <string name="contentDescription" >Article</string>
     <string name="empty">No Data</string>
+    <string name="share">share</string>
+    <string name="like">like</string>
+    <string name="dislike">dislike</string>
+    <string name="likes" >likes</string>
+    <string name="update">update</string>
 </resources>

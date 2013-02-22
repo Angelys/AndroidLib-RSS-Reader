@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.text.TextUtils;
 import org.geekhub.angelys.androidLibRSSReader.db.FeedsDatabaseHelper;
 import org.geekhub.angelys.androidLibRSSReader.db.tables.ArticlesTable;
-import org.geekhub.angelys.androidLibRSSReader.db.tables.LikesTable;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -32,7 +31,7 @@ public class ArticlesContentProvider extends ContentProvider {
     private static final int ARTICLES = 1;
     private static final int ARTICLE_ID = 2;
 
-    private static final String AUTHORITY = "org.geekhub.angelys.androidLibRSSReader.contentProvider.articles";
+    private static final String AUTHORITY = "org.geekhub.angelys.androidLibRSSReader.contentProvider";
 
     private static final String BASE_PATH = "articles";
 
@@ -188,7 +187,7 @@ public class ArticlesContentProvider extends ContentProvider {
     private void checkColumns(String[] projection) {
         String[] available = { ArticlesTable.COLUMN_TITLE,
                 ArticlesTable.COLUMN_DESCRIPTION, ArticlesTable.COLUMN_PUBLISHED_AT, ArticlesTable.COLUMN_LINK,
-                ArticlesTable.COLUMN_ID };
+                ArticlesTable.COLUMN_ID, ArticlesTable.COLUMN_LIKE };
         if (projection != null) {
             HashSet<String> requestedColumns = new HashSet<String>(Arrays.asList(projection));
             HashSet<String> availableColumns = new HashSet<String>(Arrays.asList(available));

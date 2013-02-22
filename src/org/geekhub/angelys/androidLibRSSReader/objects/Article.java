@@ -1,5 +1,6 @@
 package org.geekhub.angelys.androidLibRSSReader.objects;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
@@ -31,6 +32,8 @@ public class Article implements Serializable {
 
     private String link;
 
+    private boolean like;
+
     public Article(){}
 
     public Article(Cursor cursor)
@@ -45,6 +48,7 @@ public class Article implements Serializable {
         }
         description = cursor.getString(cursor.getColumnIndex(ArticlesTable.COLUMN_DESCRIPTION));
         link = cursor.getString(cursor.getColumnIndex(ArticlesTable.COLUMN_LINK));
+        like = cursor.getInt(cursor.getColumnIndex(ArticlesTable.COLUMN_LIKE)) == 1;
     }
 
     public Article(RssItemBean item){
@@ -53,6 +57,14 @@ public class Article implements Serializable {
         this.published_at = item.getPubDate();
         this.description = item.getDescription();
         this.link = item.getLink();
+    }
+
+    public boolean getLike() {
+        return like;
+    }
+
+    public void setLike(boolean like) {
+        this.like = like;
     }
 
     public int getId() {
@@ -93,6 +105,13 @@ public class Article implements Serializable {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public Article save(Context context)
+    {
+        ArticlesTable.saveArticle(context, this);
+
+        return this;
     }
 
 }

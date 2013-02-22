@@ -14,9 +14,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".androidLibRSSReader.activities.DetailsActivity" />
-        <provider android:authorities="org.geekhub.angelys.androidLibRSSReader.contentProvider.articles"
+        <provider android:authorities="org.geekhub.angelys.androidLibRSSReader.contentProvider"
                   android:name=".androidLibRSSReader.contentProviders.ArticlesContentProvider"/>
-        <provider android:authorities="org.geekhub.angelys.androidLibRSSReader.contentProvider.likes"
-                  android:name=".androidLibRSSReader.contentProviders.LikesContentProvider"/>
     </application>
 </manifest>
