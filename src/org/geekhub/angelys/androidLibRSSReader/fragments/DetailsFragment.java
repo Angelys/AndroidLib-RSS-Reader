@@ -69,7 +69,14 @@ public class DetailsFragment extends SherlockFragment {
     public void onPrepareOptionsMenu(Menu menu)
     {
         this.menu = menu;
-        setLikeButton();
+        if(article == null)
+        {
+            menu.findItem(R.id.like_dislike).setVisible(false);
+            menu.findItem(R.id.share).setVisible(false);
+        } else
+        {
+            setLikeButton();
+        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item)
@@ -105,6 +112,10 @@ public class DetailsFragment extends SherlockFragment {
 
             title.setText(article.getTitle());
             description.loadData(article.getDescription(), "text/html", null);
+
+            menu.findItem(R.id.like_dislike).setVisible(true);
+            menu.findItem(R.id.share).setVisible(true);
+            setLikeButton();
         }
     }
 
