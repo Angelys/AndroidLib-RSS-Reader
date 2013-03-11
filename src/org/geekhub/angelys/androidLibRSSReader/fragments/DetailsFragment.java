@@ -113,9 +113,12 @@ public class DetailsFragment extends SherlockFragment {
             title.setText(article.getTitle());
             description.loadData(article.getDescription(), "text/html", null);
 
-            menu.findItem(R.id.like_dislike).setVisible(true);
-            menu.findItem(R.id.share).setVisible(true);
-            setLikeButton();
+            if(menu != null)
+            {
+                menu.findItem(R.id.like_dislike).setVisible(true);
+                menu.findItem(R.id.share).setVisible(true);
+                setLikeButton();
+            }
         }
     }
 
