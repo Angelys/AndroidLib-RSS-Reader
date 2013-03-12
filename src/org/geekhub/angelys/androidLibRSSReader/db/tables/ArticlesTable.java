@@ -22,7 +22,7 @@ import java.util.Date;
  * Time: 6:42 PM
  * To change this template use File | Settings | File Templates.
  */
-public abstract class ArticlesTable {
+public class ArticlesTable {
 
     // Database table
     public static final String TABLE_ARTICLES = "articles";
